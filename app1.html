@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container">
+  <h2>Tiendita</h2>
+  <button onclick="agregarProducto()">miau</button> <br> <br>
+  <div class="w3-responsive">
+  <table class="w3-table-all w3-hoverable">
+    <thead>
+    <tr class="w3-light-grey">
+      <th>Borrar</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody id="cuerpoTabla">
+    </tbody>
+  </table>
+  </div> <br> <br>
+  <input type="number" readonly="readonly" id="Total">
+</div>
+<script>
+  const totalFin = document.getElementById("Total");
+  totalFin.style.background = "lightgray";
+  totalFin.style.textAlign = "right";
+  function agregarProducto(){
+    const cuerpoTabla = document.getElementById("cuerpoTabla");
+    const renglon = document.createElement("tr");
+    const col0 = document.createElement("td");
+    const col1 = document.createElement("td");
+    const col2 = document.createElement("td");
+    const col3 = document.createElement("td");
+    const col4 = document.createElement("td");
+    const in1 = document.createElement("input");
+    const in2 = document.createElement("input");
+    const in3 = document.createElement("input");
+    const in4 = document.createElement("input");
+    const borrar = document.createElement("img");
+    in2.type="number";
+    in3.type="number";
+    in4.type="number";
+    in4.classList.add("total");
+    in4.style.background = "lightgray";
+    in4.style.textAlign = "right";
+    in2.valueAsNumber = 0;
+    in3.valueAsNumber = 0;
+    in4.valueAsNumber = 0;
+    in4.readOnly=true;
+    in2.onchange = function () {
+      total();
+    }
+    in3.onchange = function () {
+      total();
+    }
+    borrar.src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/600px-Red_x.svg.png";
+    borrar.style.height = "30px";
+    borrar.style.width = "30px";
+    borrar.onclick = function () {
+      borrar.parentNode.parentNode.remove();
+      let totales = document.getElementsByClassName("total");
+      let tot = 0.0;
+      for (let i=0; i<totales.length;i++){
+        tot += totales[i].valueAsNumber;
+      }
+      totFinal = document.getElementById("Total");
+      totFinal.valueAsNumber = tot;
+    }
+    col0.appendChild(borrar)
+    col1.appendChild(in1);
+    col2.appendChild(in2);
+    col3.appendChild(in3);
+    col4.appendChild(in4);
+    renglon.appendChild(col0);
+    renglon.appendChild(col1);
+    renglon.appendChild(col2);
+    renglon.appendChild(col3);
+    renglon.appendChild(col4);
+    cuerpoTabla.appendChild(renglon);
+    function total() {
+      in4.valueAsNumber = in2.valueAsNumber * in3.valueAsNumber;
+      let totales = document.getElementsByClassName("total");
+      let tot = 0.0;
+      for (let i=0; i<totales.length;i++){
+        tot += totales[i].valueAsNumber;
+      }
+      totFinal = document.getElementById("Total");
+      totFinal.valueAsNumber = tot;
+    }
+  }
+</script>
+</body>
+</html>
