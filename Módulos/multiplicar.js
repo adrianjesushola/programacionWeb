@@ -9,7 +9,7 @@ const crearArchivo = async (base=1,listar = false) => {
     let texto = "";
     texto+=`Tabla del ${base}\n`
     if (listar)
-        console.log(amarillo+`Tabla del ${base}\n`+reset)
+        console.log(`Tabla del ${base}\n`+reset)
     for (let i = 0; i <= 10; i++) {
         texto+=`${base} * ${i} = ${base*i}\n`;
         if (listar)
